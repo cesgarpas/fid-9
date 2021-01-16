@@ -6,7 +6,7 @@
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
-<entry key="DataURL" type="xstring" value="file:/C:/Users/Alejandro/Desktop/vgsales.csv"/>
+<entry key="DataURL" type="xstring" value="file:/D:/Programación%20Antiguo/Master/Fundamento%20de%20Datos/Código/fid-9/vgsales.csv"/>
 <config key="Delimiters">
 <config key="Delim0">
 <entry key="pattern" type="xstring" value="%%00010"/>
@@ -62,8 +62,8 @@
 <entry key="acceptShortLines" type="xboolean" value="false"/>
 <entry key="uniquifyRowID" type="xboolean" value="false"/>
 <entry key="MaxNumOfRows" type="xlong" value="-1"/>
-<entry key="ColNumDetermLine" type="xint" value="2"/>
-<entry key="CharsetName" type="xstring" value="UTF-8"/>
+<entry key="ColNumDetermLine" type="xint" value="-1"/>
+<entry key="CharsetName" type="xstring" isnull="true" value=""/>
 <entry key="ConnectTimeoutInSeconds" type="xint" value="1"/>
 <entry key="delimsAtEOLuserVal" type="xboolean" value="false"/>
 <entry key="numOfColumns" type="xint" value="10"/>
@@ -217,6 +217,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="30d139b3-30f4-4f24-871b-e2f009b9ac8f"/>
+<entry key="file_store_id" type="xstring" value="23c100ac-7735-41e1-95a1-e712d297e7f4"/>
 </config>
 </config>

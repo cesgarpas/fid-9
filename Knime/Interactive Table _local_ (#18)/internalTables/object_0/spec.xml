@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="spec.xml">
-<entry key="spec_name" type="xstring" value="vgsales.csv"/>
+<entry key="spec_name" type="xstring" value="default"/>
 <entry key="number_columns" type="xint" value="10"/>
 <config key="column_spec_0">
 <entry key="column_name" type="xstring" value="Name"/>
@@ -28,25 +28,25 @@
 <config key="0">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="Wii"/>
+<entry key="StringCell" type="xstring" value="Wii1"/>
 </config>
 </config>
 <config key="1">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="NES"/>
+<entry key="StringCell" type="xstring" value="Famicom"/>
 </config>
 </config>
 <config key="2">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="GB"/>
+<entry key="StringCell" type="xstring" value="GBoy"/>
 </config>
 </config>
 <config key="3">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="DS"/>
+<entry key="StringCell" type="xstring" value="NDS"/>
 </config>
 </config>
 <config key="4">
@@ -100,7 +100,7 @@
 <config key="12">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="PS"/>
+<entry key="StringCell" type="xstring" value="PSX"/>
 </config>
 </config>
 <config key="13">

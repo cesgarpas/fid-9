@@ -16,25 +16,25 @@
 <config key="0">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="Wii"/>
+<entry key="StringCell" type="xstring" value="Wii1"/>
 </config>
 </config>
 <config key="1">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="NES"/>
+<entry key="StringCell" type="xstring" value="Famicom"/>
 </config>
 </config>
 <config key="2">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="GB"/>
+<entry key="StringCell" type="xstring" value="GBoy"/>
 </config>
 </config>
 <config key="3">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="DS"/>
+<entry key="StringCell" type="xstring" value="NDS"/>
 </config>
 </config>
 <config key="4">
@@ -88,7 +88,7 @@
 <config key="12">
 <entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
 <config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="PS"/>
+<entry key="StringCell" type="xstring" value="PSX"/>
 </config>
 </config>
 <config key="13">
