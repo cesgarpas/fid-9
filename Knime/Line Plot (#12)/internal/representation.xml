@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="viewRepresentation">
+<entry key="showLegend" type="xboolean" value="true"/>
+<entry key="autoRange" type="xboolean" value="true"/>
+<entry key="useDomainInformation" type="xboolean" value="false"/>
+<entry key="showGrid" type="xboolean" value="true"/>
+<entry key="showCrosshair" type="xboolean" value="false"/>
+<entry key="snapToPoints" type="xboolean" value="false"/>
+<entry key="resizeToWindow" type="xboolean" value="true"/>
+<entry key="enableViewConfiguration" type="xboolean" value="true"/>
+<entry key="enableTitleChange" type="xboolean" value="true"/>
+<entry key="enableSubtitleChange" type="xboolean" value="true"/>
+<entry key="enableXColumnChange" type="xboolean" value="true"/>
+<entry key="enableYColumnChange" type="xboolean" value="true"/>
+<entry key="enableXAxisLabelEdit" type="xboolean" value="true"/>
+<entry key="enableYAxisLabelEdit" type="xboolean" value="true"/>
+<entry key="enableDotSizeChange" type="xboolean" value="false"/>
+<entry key="enablePanning" type="xboolean" value="true"/>
+<entry key="enableZooming" type="xboolean" value="true"/>
+<entry key="enableDragZooming" type="xboolean" value="false"/>
+<entry key="showZoomResetButton" type="xboolean" value="false"/>
+<entry key="enableSelection" type="xboolean" value="false"/>
+<entry key="enableRectangleSelection" type="xboolean" value="false"/>
+<entry key="enableLassoSelection" type="xboolean" value="false"/>
+<entry key="imageWidth" type="xint" value="800"/>
+<entry key="imageHeight" type="xint" value="600"/>
+<entry key="backgroundColor" type="xstring" value="rgba(255,255,255,1.0)"/>
+<entry key="dataAreaColor" type="xstring" value="rgba(255,255,255,1.0)"/>
+<entry key="gridColor" type="xstring" value="rgba(230,230,230,1.0)"/>
+<entry key="hasDataset" type="xboolean" value="true"/>
+<config key="dataset">
+<entry key="tableID" type="xstring" value="ad4133ad-2cff-4e7f-9209-3c4529800ff2"/>
+<config key="columnKeys">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="Year"/>
+<entry key="1" type="xstring" value="Sum(Global_Sales)"/>
+<entry key="2" type="xstring" value="Count*(Global_Sales)"/>
+</config>
+<config key="columnColors">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" isnull="true" value=""/>
+<entry key="1" type="xstring" isnull="true" value=""/>
+<entry key="2" type="xstring" isnull="true" value=""/>
+</config>
+<config key="dateTimeFormats">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" isnull="true" value=""/>
+<entry key="1" type="xstring" isnull="true" value=""/>
+<entry key="2" type="xstring" isnull="true" value=""/>
+</config>
+<entry key="colPropsSize" type="xint" value="0"/>
+<entry key="numRows" type="xint" value="37"/>
+<config key="row_0">
+<entry key="rowKey" type="xstring" value="Row0"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1980.0"/>
+<entry key="1" type="xstring" value="11.379999999999999"/>
+<entry key="2" type="xstring" value="9.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_1">
+<entry key="rowKey" type="xstring" value="Row1"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1981.0"/>
+<entry key="1" type="xstring" value="35.48000000000001"/>
+<entry key="2" type="xstring" value="45.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_2">
+<entry key="rowKey" type="xstring" value="Row2"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1982.0"/>
+<entry key="1" type="xstring" value="28.859999999999996"/>
+<entry key="2" type="xstring" value="36.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_3">
+<entry key="rowKey" type="xstring" value="Row3"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1983.0"/>
+<entry key="1" type="xstring" value="16.790000000000003"/>
+<entry key="2" type="xstring" value="17.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_4">
+<entry key="rowKey" type="xstring" value="Row4"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1984.0"/>
+<entry key="1" type="xstring" value="50.360000000000014"/>
+<entry key="2" type="xstring" value="14.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_5">
+<entry key="rowKey" type="xstring" value="Row5"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1985.0"/>
+<entry key="1" type="xstring" value="53.940000000000005"/>
+<entry key="2" type="xstring" value="14.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_6">
+<entry key="rowKey" type="xstring" value="Row6"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1986.0"/>
+<entry key="1" type="xstring" value="37.07"/>
+<entry key="2" type="xstring" value="21.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_7">
+<entry key="rowKey" type="xstring" value="Row7"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1987.0"/>
+<entry key="1" type="xstring" value="21.739999999999995"/>
+<entry key="2" type="xstring" value="16.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_8">
+<entry key="rowKey" type="xstring" value="Row8"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1988.0"/>
+<entry key="1" type="xstring" value="47.22"/>
+<entry key="2" type="xstring" value="15.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_9">
+<entry key="rowKey" type="xstring" value="Row9"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1989.0"/>
+<entry key="1" type="xstring" value="73.45"/>
+<entry key="2" type="xstring" value="17.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_10">
+<entry key="rowKey" type="xstring" value="Row10"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1990.0"/>
+<entry key="1" type="xstring" value="49.38999999999999"/>
+<entry key="2" type="xstring" value="16.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_11">
+<entry key="rowKey" type="xstring" value="Row11"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1991.0"/>
+<entry key="1" type="xstring" value="32.230000000000004"/>
+<entry key="2" type="xstring" value="41.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_12">
+<entry key="rowKey" type="xstring" value="Row12"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1992.0"/>
+<entry key="1" type="xstring" value="76.15999999999998"/>
+<entry key="2" type="xstring" value="43.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_13">
+<entry key="rowKey" type="xstring" value="Row13"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1993.0"/>
+<entry key="1" type="xstring" value="45.98"/>
+<entry key="2" type="xstring" value="60.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_14">
+<entry key="rowKey" type="xstring" value="Row14"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1994.0"/>
+<entry key="1" type="xstring" value="79.17000000000003"/>
+<entry key="2" type="xstring" value="121.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_15">
+<entry key="rowKey" type="xstring" value="Row15"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1995.0"/>
+<entry key="1" type="xstring" value="88.10999999999991"/>
+<entry key="2" type="xstring" value="219.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_16">
+<entry key="rowKey" type="xstring" value="Row16"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1996.0"/>
+<entry key="1" type="xstring" value="199.14999999999995"/>
+<entry key="2" type="xstring" value="263.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_17">
+<entry key="rowKey" type="xstring" value="Row17"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1997.0"/>
+<entry key="1" type="xstring" value="200.98000000000013"/>
+<entry key="2" type="xstring" value="289.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_18">
+<entry key="rowKey" type="xstring" value="Row18"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1998.0"/>
+<entry key="1" type="xstring" value="255.64000000000016"/>
+<entry key="2" type="xstring" value="378.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_19">
+<entry key="rowKey" type="xstring" value="Row19"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="1999.0"/>
+<entry key="1" type="xstring" value="251.27000000000018"/>
+<entry key="2" type="xstring" value="338.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_20">
+<entry key="rowKey" type="xstring" value="Row20"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2000.0"/>
+<entry key="1" type="xstring" value="201.5600000000002"/>
+<entry key="2" type="xstring" value="349.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_21">
+<entry key="rowKey" type="xstring" value="Row21"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2001.0"/>
+<entry key="1" type="xstring" value="329.21999999999906"/>
+<entry key="2" type="xstring" value="479.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_22">
+<entry key="rowKey" type="xstring" value="Row22"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2002.0"/>
+<entry key="1" type="xstring" value="395.4199999999983"/>
+<entry key="2" type="xstring" value="826.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_23">
+<entry key="rowKey" type="xstring" value="Row23"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2003.0"/>
+<entry key="1" type="xstring" value="356.9199999999989"/>
+<entry key="2" type="xstring" value="774.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_24">
+<entry key="rowKey" type="xstring" value="Row24"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2004.0"/>
+<entry key="1" type="xstring" value="419.27999999999867"/>
+<entry key="2" type="xstring" value="762.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_25">
+<entry key="rowKey" type="xstring" value="Row25"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2005.0"/>
+<entry key="1" type="xstring" value="459.0499999999976"/>
+<entry key="2" type="xstring" value="940.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_26">
+<entry key="rowKey" type="xstring" value="Row26"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2006.0"/>
+<entry key="1" type="xstring" value="520.9199999999918"/>
+<entry key="2" type="xstring" value="1006.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_27">
+<entry key="rowKey" type="xstring" value="Row27"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2007.0"/>
+<entry key="1" type="xstring" value="610.8799999999934"/>
+<entry key="2" type="xstring" value="1199.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_28">
+<entry key="rowKey" type="xstring" value="Row28"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2008.0"/>
+<entry key="1" type="xstring" value="678.5799999999952"/>
+<entry key="2" type="xstring" value="1426.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_29">
+<entry key="rowKey" type="xstring" value="Row29"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2009.0"/>
+<entry key="1" type="xstring" value="667.2799999999947"/>
+<entry key="2" type="xstring" value="1430.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_30">
+<entry key="rowKey" type="xstring" value="Row30"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2010.0"/>
+<entry key="1" type="xstring" value="598.6499999999951"/>
+<entry key="2" type="xstring" value="1241.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_31">
+<entry key="rowKey" type="xstring" value="Row31"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2011.0"/>
+<entry key="1" type="xstring" value="511.1999999999976"/>
+<entry key="2" type="xstring" value="1097.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_32">
+<entry key="rowKey" type="xstring" value="Row32"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2012.0"/>
+<entry key="1" type="xstring" value="363.2199999999984"/>
+<entry key="2" type="xstring" value="651.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_33">
+<entry key="rowKey" type="xstring" value="Row33"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2013.0"/>
+<entry key="1" type="xstring" value="368.0499999999987"/>
+<entry key="2" type="xstring" value="544.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_34">
+<entry key="rowKey" type="xstring" value="Row34"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2014.0"/>
+<entry key="1" type="xstring" value="336.66999999999854"/>
+<entry key="2" type="xstring" value="579.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_35">
+<entry key="rowKey" type="xstring" value="Row35"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2015.0"/>
+<entry key="1" type="xstring" value="264.339999999998"/>
+<entry key="2" type="xstring" value="608.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<config key="row_36">
+<entry key="rowKey" type="xstring" value="Row36"/>
+<config key="values">
+<entry key="array-size" type="xint" value="3"/>
+<entry key="0" type="xstring" value="2016.0"/>
+<entry key="1" type="xstring" value="70.77000000000012"/>
+<entry key="2" type="xstring" value="340.0"/>
+</config>
+<entry key="numProperties" type="xint" value="1"/>
+<config key="property_0">
+<entry key="key" type="xstring" value="color"/>
+<entry key="value" type="xstring" value="#404040"/>
+</config>
+</config>
+<entry key="numColorModels" type="xint" value="0"/>
+<config key="missingValueColumns">
+<entry key="array-size" type="xint" value="0"/>
+</config>
+</config>
+<entry key="displayFullscreenButton" type="xboolean" value="true"/>
+<entry key="missingValueMethod" type="xstring" value="noGap"/>
+<entry key="showWarningInView" type="xboolean" value="true"/>
+<entry key="hasWarnings" type="xboolean" value="false"/>
+<entry key="reportOnMissingValues" type="xboolean" value="true"/>
+<config key="dateTimeFormats">
+<entry key="globalDateTimeLocale" type="xstring" value="en"/>
+<entry key="globalDateFormat" type="xstring" value="YYYY-MM-DD"/>
+<entry key="globalLocalDateFormat" type="xstring" value="YYYY-MM-DD"/>
+<entry key="globalLocalDateTimeFormat" type="xstring" value="YYYY-MM-DD"/>
+<entry key="globalLocalTimeFormat" type="xstring" value="HH:mm:ss"/>
+<entry key="globalZonedDateTimeFormat" type="xstring" value="YYYY-MM-DD z"/>
+<entry key="timezone" type="xstring" value="Europe/Paris"/>
+</config>
+<entry key="enforceOrigin" type="xboolean" value="false"/>
+</config>
