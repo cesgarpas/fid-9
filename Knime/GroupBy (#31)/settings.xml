@@ -108,7 +108,7 @@
 </config>
 <config key="aggregationMethod">
 <entry key="array-size" type="xint" value="9"/>
-<entry key="0" type="xstring" value="Count"/>
+<entry key="0" type="xstring" value="Concatenate_V2.4"/>
 <entry key="1" type="xstring" value="Minimum"/>
 <entry key="2" type="xstring" value="First"/>
 <entry key="3" type="xstring" value="First"/>
@@ -201,6 +201,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="25aa7d32-a0c6-491f-b876-b9c00962605c"/>
+<entry key="file_store_id" type="xstring" value="f89aaab3-c047-4353-852e-1938df49e9ec"/>
 </config>
 </config>

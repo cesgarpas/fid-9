@@ -12,12 +12,12 @@ library(RColorBrewer)
 
 
 ####################### Read dataset #######################
-vgsales_preprocessed <- read.csv("data/vgsales_preprocessed.csv", sep = ",", head = TRUE)
-vgsales_preprocessed_concatenated_platform <- read.csv("data/vgsales_preprocessed_concatenated_platform.csv", sep = ",", head = TRUE)
+vgsales_preprocessed <- read.csv("../data/vgsales_preprocessed.csv", sep = ",", head = TRUE)
+vgsales_preprocessed_concatenated_platform <- read.csv("../data/vgsales_preprocessed_concatenated_platform.csv", sep = ",", head = TRUE)
 
 
 ####################### Config variables #######################
-filter_year_min <- 2000
+filter_year_min <- 1900
 filter_year_max <- 2015
 supersale_threshold_percent <- 0.5
 train_set_percentage <- 0.8
@@ -68,8 +68,9 @@ vgsales_preprocessed_concatenated_platform_dummies <-
   mutate(Selling_JP = vgsales_preprocessed_concatenated_platform_dummies$Sum.JP_Sales. >= 0.01) %>%
   mutate(Selling_Other = vgsales_preprocessed_concatenated_platform_dummies$Sum.Other_Sales. >= 0.01)
 
+head(vgsales_preprocessed_concatenated_platform_dummies)
 ######## Delete unused variables ########
-vgsales_preprocessed_concatenated_platform_dummies <- select(vgsales_preprocessed_concatenated_platform_dummies, -c(Concatenate.Platform., row.ID))
+vgsales_preprocessed_concatenated_platform_dummies <- select(vgsales_preprocessed_concatenated_platform_dummies, -c(Concatenate.Platform.))
 
 
 ####################### Training #######################
@@ -80,8 +81,8 @@ train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
 test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
 
 # Remove not useful columns
-train_set <- select(train_set, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
-#train_set <- select(train_set, c(First.Genre., Supersale))
+#train_set <- select(train_set, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
+train_set <- select(train_set, c(Supersale, First.Genre., YearCount))
 
 # Train and plot tree
 tree <- rpart(Supersale ~ ., train_set, method = "class")
@@ -95,7 +96,7 @@ printcp(tree)
 pred <- predict(tree, test_set, type = "class")
 
 # Conf. matrix creation
-conf <- table(test_set$Supersale, pred_class)
+conf <- table(test_set$Supersale, pred)
 
 # Accuracy metric
 acc <- sum(diag(conf)) / sum(conf)
