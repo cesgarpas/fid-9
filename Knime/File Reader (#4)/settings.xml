@@ -6,7 +6,7 @@
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
-<entry key="DataURL" type="xstring" value="file:/D:/Programación%20Antiguo/Master/Fundamento%20de%20Datos/Código/fid-9/vgsales.csv"/>
+<entry key="DataURL" type="xstring" value="file:/D:/Programación%20Antiguo/Master/Fundamento%20de%20Datos/Código/fid-9/Datasets/vgsales.csv"/>
 <config key="Delimiters">
 <config key="Delim0">
 <entry key="pattern" type="xstring" value="%%00010"/>
@@ -217,6 +217,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="23c100ac-7735-41e1-95a1-e712d297e7f4"/>
+<entry key="file_store_id" type="xstring" value="37f569a6-09a3-4f29-9179-d8971849ffab"/>
 </config>
 </config>

@@ -25,7 +25,7 @@
 <entry key="location_present" type="xboolean" value="true"/>
 <entry key="file_system_type" type="xstring" value="RELATIVE"/>
 <entry key="file_system_specifier" type="xstring" value="knime.workflow"/>
-<entry key="path" type="xstring" value="../R/Data/vgsales_preprocessed_concatenated_platform.csv"/>
+<entry key="path" type="xstring" value="../Datasets/vgsales_preprocessed_concatenated_platform.csv"/>
 </config>
 <config key="filter_mode_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_FilterMode"/>
@@ -106,6 +106,6 @@
 <config key="ports"/>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="530882d9-358c-40e2-9f62-28e4d28cc116"/>
+<entry key="file_store_id" type="xstring" value="d0330507-b683-48a7-91ee-a33123c3994b"/>
 </config>
 </config>

@@ -2,22 +2,26 @@
 install.package("caret")
 install.package("dplyr")
 install.packages("rattle")
+install.packages("e1071")
+
 
 library(caret)
 library(dplyr)
 
-library(rpart)
 library(rattle)
 library(RColorBrewer)
 
+library(rpart)
+library(e1071)
+
 
 ####################### Read dataset #######################
-vgsales_preprocessed <- read.csv("../data/vgsales_preprocessed.csv", sep = ",", head = TRUE)
-vgsales_preprocessed_concatenated_platform <- read.csv("../data/vgsales_preprocessed_concatenated_platform.csv", sep = ",", head = TRUE)
+vgsales_preprocessed <- read.csv("../../Datasets/vgsales_preprocessed.csv", sep = ",", head = TRUE)
+vgsales_preprocessed_concatenated_platform <- read.csv("../../Datasets/vgsales_preprocessed_concatenated_platform.csv", sep = ",", head = TRUE)
 
 
 ####################### Config variables #######################
-filter_year_min <- 1900
+filter_year_min <- 2000
 filter_year_max <- 2015
 supersale_threshold_percent <- 0.5
 train_set_percentage <- 0.8
@@ -70,8 +74,18 @@ vgsales_preprocessed_concatenated_platform_dummies <-
 
 head(vgsales_preprocessed_concatenated_platform_dummies)
 ######## Delete unused variables ########
-vgsales_preprocessed_concatenated_platform_dummies <- select(vgsales_preprocessed_concatenated_platform_dummies, -c(Concatenate.Platform.))
+vgsales_preprocessed_concatenated_platform_dummies$Concatenate.Platform. <- NULL
 
+vgsales_preprocessed_concatenated_platform_dummies <- select(vgsales_preprocessed_concatenated_platform_dummies, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
+
+#vgsales_preprocessed_concatenated_platform_dummies$Name <- NULL
+#vgsales_preprocessed_concatenated_platform_dummies$First.Publisher. <- NULL
+#vgsales_preprocessed_concatenated_platform_dummies$Sum.NA_Sales. <- NULL
+#vgsales_preprocessed_concatenated_platform_dummies$Sum.EU_Sales. <- NULL
+#vgsales_preprocessed_concatenated_platform_dummies$Sum.JP_Sales. <- NULL
+#vgsales_preprocessed_concatenated_platform_dummies$Sum.Other_Sales. <- NULL
+#vgsales_preprocessed_concatenated_platform_dummies$Sum.Global_Sales. <- NULL
+#vgsales_preprocessed_concatenated_platform_dummies$Min..Year. <- NULL
 
 ####################### Training #######################
 ######## rpart Tree ######## 
@@ -82,7 +96,7 @@ test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
 
 # Remove not useful columns
 #train_set <- select(train_set, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
-train_set <- select(train_set, c(Supersale, First.Genre., YearCount))
+#train_set <- select(train_set, c(Supersale, First.Genre., YearCount))
 
 # Train and plot tree
 tree <- rpart(Supersale ~ ., train_set, method = "class")
@@ -102,6 +116,58 @@ conf <- table(test_set$Supersale, pred)
 acc <- sum(diag(conf)) / sum(conf)
 print(acc)
 
+######## NAIBE BAYON Tree ######## 
+
+# Split data into training and testing set
+dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
+train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
+test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
+
+# Train and plot tree
+tree <- naiveBayes(Supersale ~ ., train_set, type = "class")
+
+######## Metrics ######## 
+# Predict with the test_set using the tree
+pred <- predict(tree, test_set, type = "class")
+
+# Conf. matrix creation
+conf <- table(test_set$Supersale, pred)
+
+# Accuracy metric
+acc <- sum(diag(conf)) / sum(conf)
+print(acc)
+
+
+######## ctree2 Tree ########
+# Split data into training and testing set
+dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
+train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
+test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
+
+# Remove not useful columns
+#train_set <- select(train_set, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
+#train_set <- select(train_set, c(Supersale, First.Genre., YearCount))
+
+train_set <- train_set %>%
+  mutate(Supersale = factor(train_set$Supersale))
+library(party)
+tree <- train(
+  Supersale ~., data = train_set, method = "ctree2",
+  trControl = trainControl("cv", number = 10),
+  tuneGrid = expand.grid(maxdepth = 3, mincriterion = 0.95 )
+)
+plot(model$finalModel)
+
+######## Metrics ######## 
+# Predict with the test_set using the tree
+pred <- predict(tree, test_set, type = "class")
+
+# Conf. matrix creation
+conf <- table(test_set$Supersale, pred)
+
+# Accuracy metric
+acc <- sum(diag(conf)) / sum(conf)
+print(acc)
 
 
 ############################################################################
@@ -114,5 +180,3 @@ print(acc)
 
 # Specificity metric
 #specificity(factor(pred[,2]), factor(as.numeric(test_set$Supersale)))
-
-
