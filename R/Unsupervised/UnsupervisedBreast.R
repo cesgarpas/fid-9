@@ -11,17 +11,17 @@ library(rattle)
 library(RColorBrewer)
 
 # Dataset and utils
-vgsales_preprocessed <- read.csv("../data/breast_cancer.csv", sep = ",", head = TRUE)
+brcancer <- read.csv("../../Datasets/breast_cancer.csv", sep = ",", head = TRUE)
 
 # Delete unused variables
-vgsales_preprocessed <- select(vgsales_preprocessed, -c(row.ID))
+#brcancer <- select(brcancer, -c(row.ID))
 
 ####################### Training ####################### 
 
 set.seed(1)
-dt <- sort(sample(nrow(vgsales_preprocessed), nrow(vgsales_preprocessed)*.9))
-train_set<-vgsales_preprocessed[dt,]
-test_set<-vgsales_preprocessed[-dt,]
+dt <- sort(sample(nrow(brcancer), nrow(brcancer)*.9))
+train_set<-brcancer[dt,]
+test_set<-brcancer[-dt,]
 
 head(train_set)
 
@@ -57,9 +57,9 @@ plot(1:15, wss, type = "b", xlab = "Number of Clusters",
 # ====================================
 
 set.seed(1)
-dt <- sort(sample(nrow(vgsales_preprocessed), nrow(vgsales_preprocessed)*.01))
-train_set<-vgsales_preprocessed[dt,]
-test_set<-vgsales_preprocessed[-dt,]
+dt <- sort(sample(nrow(brcancer), nrow(brcancer)*.01))
+train_set<-brcancer[dt,]
+test_set<-brcancer[-dt,]
 
 train_set <- select(train_set, -c(Name, Platform, Year, Genre, Publisher))
 
@@ -127,9 +127,9 @@ apply(puntos_escalado, 2, sd)
 
 # Split data into training and testing set
 set.seed(1)
-dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), nrow(vgsales_preprocessed_concatenated_platform_dummies)*.9))
-train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
-test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
+dt <- sort(sample(nrow(brcancer_concatenated_platform_dummies), nrow(brcancer_concatenated_platform_dummies)*.9))
+train_set<-brcancer_concatenated_platform_dummies[dt,]
+test_set<-brcancer_concatenated_platform_dummies[-dt,]
 
 # Remove not useful columns
 train_set <- select(train_set, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
