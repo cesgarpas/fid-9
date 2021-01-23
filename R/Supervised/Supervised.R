@@ -13,6 +13,7 @@ library(RColorBrewer)
 
 library(rpart)
 library(e1071)
+library(party)
 
 
 ####################### Read dataset #######################
@@ -24,8 +25,7 @@ vgsales_preprocessed_concatenated_platform <- read.csv("../../Datasets/vgsales_p
 filter_year_min <- 2000
 filter_year_max <- 2015
 supersale_threshold_percent <- 0.5
-train_set_percentage <- 0.8
-set.seed(1)
+train_set_percentage <- 0.75
 
 
 ####################### Extra processing #######################
@@ -42,25 +42,30 @@ vgsales_preprocessed_concatenated_platform_dummies <-
   filter(Min..Year. <= filter_year_max & Min..Year. >= filter_year_min)
 
 ######## Generate supersale threshold ########
+# Get index
+supersale_threshold_percent <- 0.5
 supersale_threshold_index <- round(supersale_threshold_percent * length(vgsales_preprocessed_concatenated_platform_dummies[,1]))
 
 # Sort by global sales
-vgsales_preprocessed_concatenated_platform_dummies <- vgsales_preprocessed_concatenated_platform_dummies[order(-vgsales_preprocessed_concatenated_platform_dummies$Sum.Global_Sales.),]
+vgsales_preprocessed_concatenated_platform_dummies <- 
+  vgsales_preprocessed_concatenated_platform_dummies[order(-vgsales_preprocessed_concatenated_platform_dummies$Sum.Global_Sales.),]
 
-# Get index
+# Get supersales threshold value
 supersale_threshold <- vgsales_preprocessed_concatenated_platform_dummies[supersale_threshold_index,]$Sum.Global_Sales.
 
-######## Create dummy variables for platform and supersale variable depending on the threshold ########
+vgsales_preprocessed_concatenated_platform_dummies <- vgsales_preprocessed_concatenated_platform_dummies %>% 
+  mutate(Supersale = (vgsales_preprocessed_concatenated_platform_dummies$Sum.Global_Sales. >= supersale_threshold))
+
+
+######## Create dummy variables for platform ########
 #   if the attribute Concatenate.Platform contains the platform name previously distincted
-#   if it is a "supersale" 
 for (i in 1:length(disctinct_platforms[,])) {
   platform_dummy_name <- paste("Platform-", disctinct_platforms[i,], sep="")
   
   vgsales_preprocessed_concatenated_platform_dummies <-
     vgsales_preprocessed_concatenated_platform_dummies %>%
     mutate(!!toString(platform_dummy_name) := 
-             (grepl(disctinct_platforms[i,], vgsales_preprocessed_concatenated_platform_dummies$Concatenate.Platform, fixed = TRUE))) %>% 
-    mutate(Supersale = (vgsales_preprocessed_concatenated_platform_dummies$Sum.Global_Sales. >= supersale_threshold))
+             (grepl(disctinct_platforms[i,], vgsales_preprocessed_concatenated_platform_dummies$Concatenate.Platform, fixed = TRUE)))
 }
 
 
@@ -72,111 +77,84 @@ vgsales_preprocessed_concatenated_platform_dummies <-
   mutate(Selling_JP = vgsales_preprocessed_concatenated_platform_dummies$Sum.JP_Sales. >= 0.01) %>%
   mutate(Selling_Other = vgsales_preprocessed_concatenated_platform_dummies$Sum.Other_Sales. >= 0.01)
 
-head(vgsales_preprocessed_concatenated_platform_dummies)
 ######## Delete unused variables ########
-vgsales_preprocessed_concatenated_platform_dummies$Concatenate.Platform. <- NULL
+vgsales_preprocessed_concatenated_platform_dummies <- select(vgsales_preprocessed_concatenated_platform_dummies, 
+                                                             -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year., Concatenate.Platform.))
 
-vgsales_preprocessed_concatenated_platform_dummies <- select(vgsales_preprocessed_concatenated_platform_dummies, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
-
-#vgsales_preprocessed_concatenated_platform_dummies$Name <- NULL
-#vgsales_preprocessed_concatenated_platform_dummies$First.Publisher. <- NULL
-#vgsales_preprocessed_concatenated_platform_dummies$Sum.NA_Sales. <- NULL
-#vgsales_preprocessed_concatenated_platform_dummies$Sum.EU_Sales. <- NULL
-#vgsales_preprocessed_concatenated_platform_dummies$Sum.JP_Sales. <- NULL
-#vgsales_preprocessed_concatenated_platform_dummies$Sum.Other_Sales. <- NULL
-#vgsales_preprocessed_concatenated_platform_dummies$Sum.Global_Sales. <- NULL
-#vgsales_preprocessed_concatenated_platform_dummies$Min..Year. <- NULL
-
+head(vgsales_preprocessed_concatenated_platform_dummies)
 ####################### Training #######################
-######## rpart Tree ######## 
+################ rpart Tree ################ 
 # Split data into training and testing set
+set.seed(1)
 dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
 train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
 test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
 
 # Remove not useful columns
-#train_set <- select(train_set, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
-#train_set <- select(train_set, c(Supersale, First.Genre., YearCount))
+#train_set <- select(train_set, c(First.Genre., Supersale))
 
 # Train and plot tree
 tree <- rpart(Supersale ~ ., train_set, method = "class")
 fancyRpartPlot(tree)
 
-# Print train tree error
-printcp(tree)
-
 ######## Metrics ######## 
 # Predict with the test_set using the tree
 pred <- predict(tree, test_set, type = "class")
 
-# Conf. matrix creation
+# Conf. matrix creation and metrics
 conf <- table(test_set$Supersale, pred)
+confusionMatrix(conf)
 
-# Accuracy metric
-acc <- sum(diag(conf)) / sum(conf)
-print(acc)
+# Summary
+summary(tree)
 
-######## NAIBE BAYON Tree ######## 
 
+
+################ Naive Bayes Tree################ 
 # Split data into training and testing set
-dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
+set.seed(1)
+dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), 
+                  nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
 train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
 test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
 
 # Train and plot tree
-tree <- naiveBayes(Supersale ~ ., train_set, type = "class")
+tree <- naiveBayes(Supersale ~ ., train_set)
 
 ######## Metrics ######## 
 # Predict with the test_set using the tree
-pred <- predict(tree, test_set, type = "class")
+pred <- predict(tree, test_set)
 
-# Conf. matrix creation
+# Conf. matrix creation and metrics
 conf <- table(test_set$Supersale, pred)
-
-# Accuracy metric
-acc <- sum(diag(conf)) / sum(conf)
-print(acc)
+confusionMatrix(conf)
 
 
-######## ctree2 Tree ########
+
+################ Ctree2 Tree################ 
 # Split data into training and testing set
-dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
+set.seed(1)
+dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), 
+                  nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
 train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
 test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
 
-# Remove not useful columns
-#train_set <- select(train_set, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
-#train_set <- select(train_set, c(Supersale, First.Genre., YearCount))
-
 train_set <- train_set %>%
   mutate(Supersale = factor(train_set$Supersale))
-library(party)
+test_set <- test_set %>%
+  mutate(Supersale = factor(test_set$Supersale))
+
 tree <- train(
   Supersale ~., data = train_set, method = "ctree2",
   trControl = trainControl("cv", number = 10),
   tuneGrid = expand.grid(maxdepth = 3, mincriterion = 0.95 )
 )
-plot(model$finalModel)
+plot(tree$finalModel)
 
 ######## Metrics ######## 
 # Predict with the test_set using the tree
-pred <- predict(tree, test_set, type = "class")
+pred <- predict(tree, test_set, type = "raw")
 
-# Conf. matrix creation
+# Conf. matrix creation and metrics
 conf <- table(test_set$Supersale, pred)
-
-# Accuracy metric
-acc <- sum(diag(conf)) / sum(conf)
-print(acc)
-
-
-############################################################################
-# Recall metric
-#recall(test_set, relevant = rownames(test_set)[1])
-
-#pred_noclass <- predict(tree, test_set)
-# Sensitivity metric
-#sensitivity(factor(round(pred[,2]), factor(as.numeric(test_set$Supersale))))
-
-# Specificity metric
-#specificity(factor(pred[,2]), factor(as.numeric(test_set$Supersale)))
+confusionMatrix(conf)
