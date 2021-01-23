@@ -103,12 +103,12 @@
 <entry key="typeMatch" type="xbyte" value="0"/>
 </config>
 <config key="nodeAnnotation">
-<entry key="text" type="xstring" value="Agrupacion de ventas por año%%00013%%00010"/>
+<entry key="text" type="xstring" value="Group sales by year"/>
 <entry key="bgcolor" type="xint" value="16777215"/>
-<entry key="x-coordinate" type="xint" value="619"/>
-<entry key="y-coordinate" type="xint" value="339"/>
-<entry key="width" type="xint" value="163"/>
-<entry key="height" type="xint" value="30"/>
+<entry key="x-coordinate" type="xint" value="1237"/>
+<entry key="y-coordinate" type="xint" value="179"/>
+<entry key="width" type="xint" value="114"/>
+<entry key="height" type="xint" value="15"/>
 <entry key="alignment" type="xstring" value="CENTER"/>
 <entry key="borderSize" type="xint" value="0"/>
 <entry key="borderColor" type="xint" value="16777215"/>
@@ -143,6 +143,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="b4ede5e6-dffe-4182-bb5b-a5f71d75c4bc"/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
 </config>
 </config>
