@@ -82,11 +82,18 @@ vgsales_preprocessed_concatenated_platform_dummies <- select(vgsales_preprocesse
                                                              -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year., Concatenate.Platform.))
 
 head(vgsales_preprocessed_concatenated_platform_dummies)
+
+
+
+
+
 ####################### Training #######################
+
 ################ rpart Tree ################ 
 # Split data into training and testing set
 set.seed(1)
-dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
+dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), 
+                  nrow(vgsales_preprocessed_concatenated_platform_dummies) * train_set_percentage))
 train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
 test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
 
@@ -110,7 +117,7 @@ summary(tree)
 
 
 
-################ Naive Bayes Tree################ 
+################ Naive Bayes Tree ################ 
 # Split data into training and testing set
 set.seed(1)
 dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), 
@@ -131,7 +138,7 @@ confusionMatrix(conf)
 
 
 
-################ Ctree2 Tree################ 
+################ Ctree2 Tree ################ 
 # Split data into training and testing set
 set.seed(1)
 dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), 
@@ -147,7 +154,7 @@ test_set <- test_set %>%
 tree <- train(
   Supersale ~., data = train_set, method = "ctree2",
   trControl = trainControl("cv", number = 10),
-  tuneGrid = expand.grid(maxdepth = 3, mincriterion = 0.95 )
+  tuneGrid = expand.grid(maxdepth = 3, mincriterion = 0.95)
 )
 plot(tree$finalModel)
 
