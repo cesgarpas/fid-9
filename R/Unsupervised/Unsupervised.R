@@ -6,9 +6,9 @@ install.packages("vegan")
 library(dplyr)
 library(tidyr)
 library(GGally)
-library(gridExtra)
-library(factoextra)
-library(FactoMineR)
+#library(gridExtra)
+#library(factoextra)
+#library(FactoMineR)
 library(foreign)
 library(cluster)
 library(vegan)
@@ -117,7 +117,7 @@ plot(sil)
 
 
 
-############ COSAS RARAS DE ALFONSO QUE NO SABEMOS DE DONDE HAN SALIDO ############
+############ READ DATA FILE############
 seed_3 <- read.csv("../../Datasets/Seed_Data.csv")
 glimpse(seed_3)
 
