@@ -1,155 +1,152 @@
-# Libraries
-install.package("caret")
-install.package("dplyr")
-install.packages("rattle")
+install.packages("GGally")
+install.packages("foreign")
+install.packages("cluster")
+install.packages("vegan")
 
-library(caret)
 library(dplyr)
+library(tidyr)
+library(GGally)
+library(gridExtra)
+library(factoextra)
+library(FactoMineR)
+library(foreign)
+library(cluster)
+library(vegan)
 
-library(rpart)
-library(rattle)
-library(RColorBrewer)
+############ KMEANS ############
+seed <- read.csv("../../Datasets/Seed_Data.csv")
+glimpse(seed)
 
-# Dataset and utils
-vgsales_preprocessed <- read.csv("..data/vgsales_preprocessed_count_platform.csv", sep = ",", head = TRUE)
+# check missing value
+anyNA(seed)
 
-# Delete unused variables
-vgsales_preprocessed <- select(vgsales_preprocessed, -c(row.ID))
+# rename column and correcting data type
+names(seed) <- c("Area", "Perimeter", "Compactness", "Length", "Width", "Asymetry.coef", "Grove.length", "Type")
+seed
+seed$Type <- as.numeric(seed$Type+1)
+str(seed)
 
-####################### Training ####################### 
+types<-seed$Type
 
-set.seed(1)
-dt <- sort(sample(nrow(vgsales_preprocessed), nrow(vgsales_preprocessed)*.9))
-train_set<-vgsales_preprocessed[dt,]
-test_set<-vgsales_preprocessed[-dt,]
+seed <- select(seed, -c('Type'))
+head(seed)
+# Data scalated
+scalated_seed <- scale(seed)
+scalated_seed
 
-head(train_set)
+# Calculate distance matrix
+distance_matrix<-dist(scalated_seed)
 
-train_set <- select(train_set, -c(row.ID, Name, First.Genre., First.Publisher.))
-train_set <- select(train_set, -c(Sum.JP_Sales., Sum.NA_Sales., Sum.EU_Sales., Sum.Other_Sales.))
-head(train_set)
+# Calculate kmeans
+km_seed<-kmeans(scale(seed),centers = 3, nstart = 20)
 
-km_train <- kmeans(train_set, centers = 3, nstar = 20)
-km_train
+# Plot kmeans
+plot(seed,col=(km_seed$cluster)*9, main=km_seed$tot.withinss)
+# fviz_cluster(km_seed, data = seed)
 
-plot(train_set,col=km_train$cluster, main=km_train$tot.withinss)
+summary(km_seed)
 
-# Ver el comportamiento según el inicio del kmeans
-# La aleatoriedad implica diferentes resultados
-# Por cada plot mostramos el WSS, que queremos minimizar
+# Compare clusters based on type
+table(km_seed$cluster,types)
 
-for(i in 1:6){
-  km_puntos <- kmeans(puntos, center = 3, nstar = 1)
-  plot(puntos,col=km_puntos$cluster, main=km_puntos$tot.withinss)
-}
+conf <- table(km_seed$cluster, types)
 
-# Estudio del parámetro K
-wss <- 0
-for (i in 1:15) {
-  km.out <- kmeans(puntos, centers = i, nstar=20)
-  wss[i] <- km.out$tot.withinss
-}
-plot(1:15, wss, type = "b", xlab = "Number of Clusters",
-     ylab = "Within groups sum of squares")
-
-# ====================================
-# Ejercicio 2 - Clustering jerárquico
-# ====================================
-
-set.seed(1)
-dt <- sort(sample(nrow(vgsales_preprocessed), nrow(vgsales_preprocessed)*.01))
-train_set<-vgsales_preprocessed[dt,]
-test_set<-vgsales_preprocessed[-dt,]
-
-train_set <- select(train_set, -c(Name, Platform, Year, Genre, Publisher))
-
-
-matriz_distancias <- dist(train_set)
-m <- as.matrix(matriz_distancias)
-
-# Construir clustering jerárquico
-hclust_aux <- hclust(matriz_distancias)
-summary(hclust_aux)
-print(hclust_aux)
-
-plot(hclust_aux)
-abline(h = 6, col = "red")
-
-# Elegimos cómo cortar
-# Cortar por altura
-cutree(hclust_aux, h = 0.1)
-# Cortar por número de clusters
-cutree(hclust_aux, k = 1)
-
-
-# Cluster usando método completo
-hclust.complete <- hclust(dist(train_set), method = "complete")
-plot(hclust.complete, main = "Distancia máxima: complete")
-# Average linkage: hclust.average
-hclust.average <- hclust(dist(train_set), method = "average")
-plot(hclust.average, main = "Distancia media: average")
-# Single linkage
-hclust.single <- hclust(dist(train_set), method = "single")
-plot(hclust.single, main = "Distancia mínima: single")
-# Plot dendrogram de hclust.complete, hclust.average y hclust.single
-
-# El más balanceado en este caso es el complete y el menos el single
-
-
-
-# Escalamos:
-colMeans(train_set)
-apply(train_set, 2, sd)
-puntos_escalado <- scale(train_set)
-colMeans(puntos_escalado)
-apply(puntos_escalado, 2, sd)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Split data into training and testing set
-set.seed(1)
-dt <- sort(sample(nrow(vgsales_preprocessed_concatenated_platform_dummies), nrow(vgsales_preprocessed_concatenated_platform_dummies)*.9))
-train_set<-vgsales_preprocessed_concatenated_platform_dummies[dt,]
-test_set<-vgsales_preprocessed_concatenated_platform_dummies[-dt,]
-
-# Remove not useful columns
-train_set <- select(train_set, -c(Name, First.Publisher., Sum.NA_Sales., Sum.EU_Sales., Sum.JP_Sales., Sum.Other_Sales., Sum.Global_Sales., Min..Year.))
-
-# Train and plot tree
-tree <- rpart(Supersale ~ ., train_set, method = "class")
-fancyRpartPlot(tree)
-
-
-pred <- predict(tree, test_set, type = "class")
-
-# Construye la matriz de confusión
-conf <- table(test_set$Supersale, pred)
-
-# Calcula accuracy
+# Accuracy metric
 acc <- sum(diag(conf)) / sum(conf)
-print(acc)
+acc
 
-# Punto 5, parece que sobreajusta
-set.seed(1)
-tree <- rpart(Survived ~., train, method="class",
-              control=rpart.control(cp=0.00001))
-fancyRpartPlot(tree)
+#Silhouette
+
+kmeans_dist = vegdist(seed)
+kmeans_sil = silhouette (km_seed$cluster,kmeans_dist) # or use your cluster vector
+windows() # RStudio sometimes does not display silhouette plots correctly
+plot(kmeans_sil)
+
+
+
+
+############ PAM (KMEDIOIDES) ############
+seed_kmd <- read.csv("../../Datasets/Seed_Data.csv")
+glimpse(seed_kmd)
+
+# check missing value
+anyNA(seed_kmd)
+
+# rename column and correcting data type
+names(seed_kmd) <- c("Area", "Perimeter", "Compactness", "Length", "Width", "Asymetry.coef", "Grove.length", "Type")
+
+types<-seed_kmd$Type
+
+#seed_kmd <- select(seed_kmd, c('Area', 'Perimeter'))
+seed_kmd
+# seed$Type <- as.factor(seed$Type)
+str(seed_kmd)
+
+
+
+# Data scalated
+scalated_seed_mkd <- scale(seed_kmd)
+scalated_seed_mkd
+
+# Calculate distance matrix
+distance_matrix<-dist(scalated_seed_mkd)
+
+# Calculate pam
+km_seed_kmd<-pam(scale(seed_kmd), 3)
+
+plot(km_seed_kmd,col=(km_seed_kmd$cluster)*10, main=km_seed_kmd$tot.withinss)
+
+summary(km_seed_kmd)
+
+# Compare clusters based on type
+table(km_seed_kmd$cluster,types)
+
+
+#Silhouette
+dis = vegdist(seed_kmd)
+sil = silhouette (km_seed_kmd$cluster,dis) # or use your cluster vector
+windows() # We noticed RStudio sometimes does not display silhouette plots correctly
+plot(sil)
+
+
+
+
+
+
+
+
+
+
+############ COSAS RARAS DE ALFONSO QUE NO SABEMOS DE DONDE HAN SALIDO ############
+seed_3 <- read.csv("../../Datasets/Seed_Data.csv")
+glimpse(seed_3)
+
+# check missing value
+anyNA(seed_3)
+
+# rename column and correcting data type
+names(seed_3) <- c("Area", "Perimeter", "Compactness", "Length", "Width", "Asymetry.coef", "Grove.length", "Type")
+seed_3
+seed_3$Type <- as.numeric(seed_3$Type+1)
+str(seed_3)
+
+types_3<-seed_3$Type
+
+seed_3 <- select(seed_3, -c('Type'))
+head(seed_3)
+# Data scalated
+scalated_seed_3 <- scale(seed_3)
+scalated_seed_3
+
+# Calculate distance matrix
+distance_matrix<-dist(scalated_seed_3)
+
+
+# Hierarchical clusterization method
+ag1 = agnes(seed_3, metric = "euclidean", stand=TRUE) #STAND TRUE es pa los datos tipificados
+summary(ag1)
+
+plot(ag1, which.plots=c(2), main="Dendograma")
+
+
+
